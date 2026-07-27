@@ -1,0 +1,39 @@
+from app.models.models import (
+    Base,
+    UserRole,
+    TicketPriority,
+    TicketStatus,
+    Organization,
+    Department,
+    User,
+    Ticket,
+    TicketAttachment,
+    TicketComment,
+    TicketActivity,
+    KBDocument,
+    KBChunk,
+    ChatThread,
+    ChatMessage,
+    Notification,
+    AIUsageLog
+)
+
+__all__ = [
+    "Base",
+    "UserRole",
+    "TicketPriority",
+    "TicketStatus",
+    "Organization",
+    "Department",
+    "User",
+    "Ticket",
+    "TicketAttachment",
+    "TicketComment",
+    "TicketActivity",
+    "KBDocument",
+    "KBChunk",
+    "ChatThread",
+    "ChatMessage",
+    "Notification",
+    "AIUsageLog"
+]
