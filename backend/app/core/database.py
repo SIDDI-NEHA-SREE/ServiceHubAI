@@ -21,9 +21,10 @@ if "sqlite" in db_url:
 
 engine = create_async_engine(
     db_url,
-    echo=False,
-    future=True,
-    connect_args=connect_args
+    echo=True,
+    connect_args={
+        "ssl":"require"
+    }
 )
 
 AsyncSessionLocal = async_sessionmaker(
