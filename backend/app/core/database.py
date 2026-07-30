@@ -49,3 +49,6 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
             raise
         finally:
             await session.close()
+
+# Import all models so SQLAlchemy knows about them
+from app.models import models
