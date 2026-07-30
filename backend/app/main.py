@@ -1,14 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from contextlib import asynccontextmanager
+from app.core.database import engine, Base
 from app.core.config import settings
 from app.api.v1.api import api_router
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Create all database tables
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    yield
+
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     description="ServiceHub AI - Enterprise Multi-Tenant AI Service Desk API Platform",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan,
 )
 
 # CORS configuration
